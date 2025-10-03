@@ -1,2 +1,2 @@
-# score-archery-www
-활쏘기 잘한 점수를 보여주자
+# arrow-master-www
+활쏘기 마스터 웹페이지

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Master - 최고의 3D 활쏘기 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+            color: #333;
+        }
+        
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* 히어로 섹션 */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '🏹';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .app-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .app-btn {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .app-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* 기능 섹션 */
+        .features {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        /* 특수 화살 섹션 */
+        .arrows {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .arrows-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .arrow-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, background 0.3s;
+            text-align: center;
+        }
+        
+        .arrow-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .arrow-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .arrow-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 리더보드 섹션 */
+        .leaderboard {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+        
+        .leaderboard-table {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .leaderboard-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .leaderboard-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        
+        .leaderboard-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .leaderboard-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .rank-1 { color: #FFD700; }
+        .rank-2 { color: #C0C0C0; }
+        .rank-3 { color: #CD7F32; }
+        
+        /* 뉴스 섹션 */
+        .news {
+            padding: 5rem 2rem;
+            background: white;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        /* 푸터 */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .footer-section a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: #667eea;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+        
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="logo">🏹 Arrow Master</div>
+        <ul class="nav-links">
+            <li><a href="#home">홈</a></li>
+            <li><a href="#features">특징</a></li>
+            <li><a href="#arrows">특수 화살</a></li>
+            <li><a href="#leaderboard">리더보드</a></li>
+            <li><a href="#news">소식</a></li>
+        </ul>
+        <a href="#download" class="download-btn">다운로드</a>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Arrow Master</h1>
+            <p>손끝에서 시작되는 완벽한 한 발, 최고의 3D 활쏘기 경험</p>
+            <div class="app-buttons">
+                <a href="#" class="app-btn">
+                    <span>🍎</span>
+                    <div>
+                        <div style="font-size: 0.7rem;">Download on the</div>
+                        <div>App Store</div>
+                    </div>
+                </a>
+                <a href="#" class="app-btn">
+                    <span>▶️</span>
+                    <div>
+                        <div style="font-size: 0.7rem;">GET IT ON</div>
+                        <div>Google Play</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 기능 섹션 -->
+    <section id="features" class="features">
+        <h2 class="section-title">게임 특징</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>직관적인 조작</h3>
+                <p>화면을 당겨 발사하는 간단하고 중독성 있는 게임플레이</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>크로스 플랫폼</h3>
+                <p>Apple, Facebook, Google 로그인으로 어디서든 이어하기</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>글로벌 리더보드</h3>
+                <p>전 세계 플레이어들과 실력을 겨루세요</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>특수 화살</h3>
+                <p>6가지 특수 화살로 전략적인 플레이</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>멋진 그래픽</h3>
+                <p>SceneKit 기반 실감나는 3D 그래픽과 물리 엔진</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3>몰입감 있는 사운드</h3>
+                <p>생생한 효과음과 배경음악</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 특수 화살 섹션 -->
+    <section id="arrows" class="arrows">
+        <h2 class="section-title">특수 화살</h2>
+        <div class="arrows-grid">
+            <div class="arrow-card">
+                <div class="arrow-icon">🔥</div>
+                <h3>불화살</h3>
+                <p>범위 화염 피해로 주변 타겟까지 공격</p>
+            </div>
+            <div class="arrow-card">
+                <div class="arrow-icon">❄️</div>
+                <h3>얼음화살</h3>
+                <p>타겟을 얼려 시간 보너스 획득</p>
+            </div>
+            <div class="arrow-card">
+                <div class="arrow-icon">⚡</div>
+                <h3>번개화살</h3>
+                <p>여러 타겟에 연쇄 공격</p>
+            </div>
+            <div class="arrow-card">
+                <div class="arrow-icon">💥</div>
+                <h3>폭발화살</h3>
+                <p>폭발로 광역 타격</p>
+            </div>
+            <div class="arrow-card">
+                <div class="arrow-icon">🎯</div>
+                <h3>트리플샷</h3>
+                <p>한 번에 3개 화살 발사</p>
+            </div>
+            <div class="arrow-card">
+                <div class="arrow-icon">🌟</div>
+                <h3>유도화살</h3>
+                <p>자동 추적으로 명중률 상승</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 리더보드 섹션 -->
+    <section id="leaderboard" class="leaderboard">
+        <h2 class="section-title">글로벌 리더보드</h2>
+        <div class="leaderboard-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>순위</th>
+                        <th>플레이어</th>
+                        <th>점수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="rank rank-1">🥇 1</span></td>
+                        <td>ArcherKing</td>
+                        <td>125,890</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank rank-2">🥈 2</span></td>
+                        <td>BowMaster</td>
+                        <td>118,450</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank rank-3">🥉 3</span></td>
+                        <td>TargetHunter</td>
+                        <td>112,230</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank">4</span></td>
+                        <td>ArrowPro</td>
+                        <td>98,560</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank">5</span></td>
+                        <td>SharpShooter</td>
+                        <td>95,120</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 뉴스 섹션 -->
+    <section id="news" class="news">
+        <h2 class="section-title">최신 소식</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image">🎉</div>
+                <div class="news-content">
+                    <div class="news-date">2025년 10월 1일</div>
+                    <h3>Arrow Master 정식 출시!</h3>
+                    <p>드디어 Arrow Master가 출시되었습니다. 지금 다운로드하고 특별 보상을 받으세요!</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image">🔥</div>
+                <div class="news-content">
+                    <div class="news-date">2025년 9월 28일</div>
+                    <h3>특수 화살 50% 할인!</h3>
+                    <p>출시 기념으로 모든 특수 화살 패키지 50% 할인 진행 중입니다.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image">🏆</div>
+                <div class="news-content">
+                    <div class="news-date">2025년 9월 25일</div>
+                    <h3>시즌 1 토너먼트 개최</h3>
+                    <p>총 상금 1,000만원 규모의 첫 번째 시즌 토너먼트가 곧 시작됩니다!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Arrow Master</h4>
+                <p>최고의 3D 활쏘기 게임으로<br>당신의 실력을 증명하세요!</p>
+            </div>
+            <div class="footer-section">
+                <h4>링크</h4>
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">고객센터</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h4>소셜 미디어</h4>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">📺</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>문의</h4>
+                <a href="mailto:support@arrowmaster.com">support@arrowmaster.com</a>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Arrow Master. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
