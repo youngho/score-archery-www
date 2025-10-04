@@ -1,0 +1,237 @@
+<!-- 히어로 섹션 -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>🏆 글로벌 리더보드</h1>
+    <p>최고의 활쏘기 실력을 증명하세요! 당신의 순위는?</p>
+    <div class="app-buttons">
+      <a href="#" class="app-btn">
+        <span>🍎</span>
+        <div>
+          <div style="font-size: 0.7rem;">Download on the</div>
+          <div>App Store</div>
+        </div>
+      </a>
+      <a href="#" class="app-btn">
+        <span>▶️</span>
+        <div>
+          <div style="font-size: 0.7rem;">GET IT ON</div>
+          <div>Google Play</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 리더보드 탭 메뉴 -->
+<section class="leaderboard-tabs">
+  <div class="tab-buttons">
+    <button class="tab-btn active" (click)="setActiveTab('alltime')" [class.active]="activeTab === 'alltime'">🏆 누적점수</button>
+    <button class="tab-btn" (click)="setActiveTab('monthly')" [class.active]="activeTab === 'monthly'">📅 월간점수</button>
+    <button class="tab-btn" (click)="setActiveTab('weekly')" [class.active]="activeTab === 'weekly'">📊 주간점수</button>
+    <button class="tab-btn" (click)="setActiveTab('daily')" [class.active]="activeTab === 'daily'">⚡ 일간점수</button>
+  </div>
+</section>
+
+<!-- 리더보드 섹션 -->
+<section id="leaderboard" class="leaderboard">
+  <!-- 누적점수 탭 -->
+  <div class="leaderboard-content" *ngIf="activeTab === 'alltime'">
+    <h2 class="section-title">🏆 누적점수 리더보드</h2>
+    <p class="section-subtitle">게임 오픈부터 현재까지의 총 누적 점수</p>
+    <div class="leaderboard-table">
+      <table>
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>플레이어</th>
+            <th>누적점수</th>
+            <th>레벨</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank rank-1">🥇 1</span></td>
+            <td>ArcherKing</td>
+            <td>1,258,900</td>
+            <td>Master</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-2">🥈 2</span></td>
+            <td>BowMaster</td>
+            <td>1,184,500</td>
+            <td>Expert</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-3">🥉 3</span></td>
+            <td>TargetHunter</td>
+            <td>1,122,300</td>
+            <td>Expert</td>
+          </tr>
+          <tr>
+            <td><span class="rank">4</span></td>
+            <td>ArrowPro</td>
+            <td>985,600</td>
+            <td>Advanced</td>
+          </tr>
+          <tr>
+            <td><span class="rank">5</span></td>
+            <td>SharpShooter</td>
+            <td>951,200</td>
+            <td>Advanced</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 월간점수 탭 -->
+  <div class="leaderboard-content" *ngIf="activeTab === 'monthly'">
+    <h2 class="section-title">📅 월간점수 리더보드</h2>
+    <p class="section-subtitle">이번 달 가장 높은 점수를 기록한 플레이어들</p>
+    <div class="leaderboard-table">
+      <table>
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>플레이어</th>
+            <th>월간점수</th>
+            <th>게임수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank rank-1">🥇 1</span></td>
+            <td>MonthlyKing</td>
+            <td>89,450</td>
+            <td>156</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-2">🥈 2</span></td>
+            <td>JanuaryWarrior</td>
+            <td>82,300</td>
+            <td>142</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-3">🥉 3</span></td>
+            <td>NewYearArcher</td>
+            <td>78,900</td>
+            <td>135</td>
+          </tr>
+          <tr>
+            <td><span class="rank">4</span></td>
+            <td>WinterHunter</td>
+            <td>75,200</td>
+            <td>128</td>
+          </tr>
+          <tr>
+            <td><span class="rank">5</span></td>
+            <td>FrostBow</td>
+            <td>71,800</td>
+            <td>119</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 주간점수 탭 -->
+  <div class="leaderboard-content" *ngIf="activeTab === 'weekly'">
+    <h2 class="section-title">📊 주간점수 리더보드</h2>
+    <p class="section-subtitle">이번 주 최고의 활약을 보인 플레이어들</p>
+    <div class="leaderboard-table">
+      <table>
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>플레이어</th>
+            <th>주간점수</th>
+            <th>평균점수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank rank-1">🥇 1</span></td>
+            <td>WeeklyChamp</td>
+            <td>24,850</td>
+            <td>1,658</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-2">🥈 2</span></td>
+            <td>WeekendWarrior</td>
+            <td>22,100</td>
+            <td>1,573</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-3">🥉 3</span></td>
+            <td>SevenDays</td>
+            <td>20,750</td>
+            <td>1,482</td>
+          </tr>
+          <tr>
+            <td><span class="rank">4</span></td>
+            <td>WeekHero</td>
+            <td>19,200</td>
+            <td>1,371</td>
+          </tr>
+          <tr>
+            <td><span class="rank">5</span></td>
+            <td>WeeklyStar</td>
+            <td>18,650</td>
+            <td>1,332</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 일간점수 탭 -->
+  <div class="leaderboard-content" *ngIf="activeTab === 'daily'">
+    <h2 class="section-title">⚡ 일간점수 리더보드</h2>
+    <p class="section-subtitle">오늘 가장 뜨거운 활쏘기 실력자들</p>
+    <div class="leaderboard-table">
+      <table>
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>플레이어</th>
+            <th>일간점수</th>
+            <th>최고점수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank rank-1">🥇 1</span></td>
+            <td>DailyKing</td>
+            <td>8,950</td>
+            <td>2,340</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-2">🥈 2</span></td>
+            <td>TodayWinner</td>
+            <td>8,200</td>
+            <td>2,180</td>
+          </tr>
+          <tr>
+            <td><span class="rank rank-3">🥉 3</span></td>
+            <td>DayShooter</td>
+            <td>7,850</td>
+            <td>2,090</td>
+          </tr>
+          <tr>
+            <td><span class="rank">4</span></td>
+            <td>TodayHunter</td>
+            <td>7,450</td>
+            <td>1,980</td>
+          </tr>
+          <tr>
+            <td><span class="rank">5</span></td>
+            <td>DailyPro</td>
+            <td>7,100</td>
+            <td>1,890</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,40 @@
+/* 특수 화살 섹션 */
+.arrows {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.arrows-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.arrow-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s, background 0.3s;
+  text-align: center;
+}
+
+.arrow-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.arrow-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.arrow-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
