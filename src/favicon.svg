@@ -1,0 +1,23 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- 과녁 배경 (외곽 원) -->
+  <circle cx="16" cy="16" r="14" fill="#8B4513" stroke="#654321" stroke-width="1"/>
+  
+  <!-- 과녁 링들 -->
+  <circle cx="16" cy="16" r="12" fill="#F5F5DC" stroke="#D2B48C" stroke-width="0.5"/>
+  <circle cx="16" cy="16" r="9" fill="#FF6B6B" stroke="#FF5252" stroke-width="0.5"/>
+  <circle cx="16" cy="16" r="6" fill="#4ECDC4" stroke="#26A69A" stroke-width="0.5"/>
+  <circle cx="16" cy="16" r="3" fill="#FFE66D" stroke="#FFD54F" stroke-width="0.5"/>
+  
+  <!-- 과녁 중심점 -->
+  <circle cx="16" cy="16" r="1" fill="#2C3E50"/>
+  
+  <!-- 화살 -->
+  <line x1="8" y1="8" x2="16" y2="16" stroke="#2C3E50" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="16,16 18,14 20,16 18,18" fill="#FFD700" stroke="#FFA000" stroke-width="0.5"/>
+  <polygon points="8,8 10,6 12,8 10,10" fill="#E0E0E0" stroke="#9E9E9E" stroke-width="0.5"/>
+  
+  <!-- 화살 깃털 -->
+  <path d="M 6 6 Q 8 4 10 6 Q 8 8 6 6" fill="#FF6B6B" stroke="#E53935" stroke-width="0.3"/>
+  <path d="M 6 10 Q 8 12 10 10 Q 8 8 6 10" fill="#FF6B6B" stroke="#E53935" stroke-width="0.3"/>
+</svg>
+
