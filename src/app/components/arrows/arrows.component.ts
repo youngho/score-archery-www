@@ -6,9 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './arrows.component.html',
-  styleUrls: ['./arrows.component.css']
+  styleUrls: ['./arrows.component.css'],
 })
-export class ArrowsComponent {
-  
-}
-
+export class ArrowsComponent {}

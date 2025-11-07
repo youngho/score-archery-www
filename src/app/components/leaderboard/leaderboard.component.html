@@ -7,14 +7,14 @@
       <a href="#" class="app-btn">
         <span>🍎</span>
         <div>
-          <div style="font-size: 0.7rem;">Download on the</div>
+          <div style="font-size: 0.7rem">Download on the</div>
           <div>App Store</div>
         </div>
       </a>
       <a href="#" class="app-btn">
         <span>▶️</span>
         <div>
-          <div style="font-size: 0.7rem;">GET IT ON</div>
+          <div style="font-size: 0.7rem">GET IT ON</div>
           <div>Google Play</div>
         </div>
       </a>
@@ -23,23 +23,75 @@
 </section>
 
 <!-- 리더보드 탭 메뉴 -->
-<section class="leaderboard-tabs">
-  <div class="tab-buttons">
-    <button class="tab-btn active" (click)="setActiveTab('alltime')" [class.active]="activeTab === 'alltime'">🏆 누적점수</button>
-    <button class="tab-btn" (click)="setActiveTab('monthly')" [class.active]="activeTab === 'monthly'">📅 월간점수</button>
-    <button class="tab-btn" (click)="setActiveTab('weekly')" [class.active]="activeTab === 'weekly'">📊 주간점수</button>
-    <button class="tab-btn" (click)="setActiveTab('daily')" [class.active]="activeTab === 'daily'">⚡ 일간점수</button>
+<section class="leaderboard-tabs" aria-label="리더보드 탭 메뉴">
+  <div class="tab-buttons" role="tablist" aria-label="리더보드 기간 선택">
+    <button
+      type="button"
+      class="tab-btn"
+      role="tab"
+      [attr.aria-selected]="activeTab === 'alltime'"
+      [attr.aria-controls]="'alltime-panel'"
+      [id]="'alltime-tab'"
+      (click)="setActiveTab('alltime')"
+      [class.active]="activeTab === 'alltime'"
+    >
+      <span aria-hidden="true">🏆</span> 누적점수
+    </button>
+    <button
+      type="button"
+      class="tab-btn"
+      role="tab"
+      [attr.aria-selected]="activeTab === 'monthly'"
+      [attr.aria-controls]="'monthly-panel'"
+      [id]="'monthly-tab'"
+      (click)="setActiveTab('monthly')"
+      [class.active]="activeTab === 'monthly'"
+    >
+      <span aria-hidden="true">📅</span> 월간점수
+    </button>
+    <button
+      type="button"
+      class="tab-btn"
+      role="tab"
+      [attr.aria-selected]="activeTab === 'weekly'"
+      [attr.aria-controls]="'weekly-panel'"
+      [id]="'weekly-tab'"
+      (click)="setActiveTab('weekly')"
+      [class.active]="activeTab === 'weekly'"
+    >
+      <span aria-hidden="true">📊</span> 주간점수
+    </button>
+    <button
+      type="button"
+      class="tab-btn"
+      role="tab"
+      [attr.aria-selected]="activeTab === 'daily'"
+      [attr.aria-controls]="'daily-panel'"
+      [id]="'daily-tab'"
+      (click)="setActiveTab('daily')"
+      [class.active]="activeTab === 'daily'"
+    >
+      <span aria-hidden="true">⚡</span> 일간점수
+    </button>
   </div>
 </section>
 
 <!-- 리더보드 섹션 -->
-<section id="leaderboard" class="leaderboard">
+<section id="leaderboard" class="leaderboard" aria-labelledby="leaderboard-heading">
   <!-- 누적점수 탭 -->
-  <div class="leaderboard-content" *ngIf="activeTab === 'alltime'">
-    <h2 class="section-title">🏆 누적점수 리더보드</h2>
+  <div
+    class="leaderboard-content"
+    *ngIf="activeTab === 'alltime'"
+    role="tabpanel"
+    [attr.aria-labelledby]="'alltime-tab'"
+    [id]="'alltime-panel'"
+  >
+    <h2 class="section-title" id="leaderboard-heading">
+      <span aria-hidden="true">🏆</span> 누적점수 리더보드
+    </h2>
     <p class="section-subtitle">게임 오픈부터 현재까지의 총 누적 점수</p>
     <div class="leaderboard-table">
-      <table>
+      <table role="table" aria-label="누적점수 리더보드">
         <thead>
           <tr>
             <th>순위</th>
@@ -85,11 +137,17 @@
   </div>
 
   <!-- 월간점수 탭 -->
-  <div class="leaderboard-content" *ngIf="activeTab === 'monthly'">
-    <h2 class="section-title">📅 월간점수 리더보드</h2>
+  <div
+    class="leaderboard-content"
+    *ngIf="activeTab === 'monthly'"
+    role="tabpanel"
+    [attr.aria-labelledby]="'monthly-tab'"
+    [id]="'monthly-panel'"
+  >
+    <h2 class="section-title"><span aria-hidden="true">📅</span> 월간점수 리더보드</h2>
     <p class="section-subtitle">이번 달 가장 높은 점수를 기록한 플레이어들</p>
     <div class="leaderboard-table">
-      <table>
+      <table role="table" aria-label="월간점수 리더보드">
         <thead>
           <tr>
             <th>순위</th>
@@ -135,11 +193,17 @@
   </div>
 
   <!-- 주간점수 탭 -->
-  <div class="leaderboard-content" *ngIf="activeTab === 'weekly'">
-    <h2 class="section-title">📊 주간점수 리더보드</h2>
+  <div
+    class="leaderboard-content"
+    *ngIf="activeTab === 'weekly'"
+    role="tabpanel"
+    [attr.aria-labelledby]="'weekly-tab'"
+    [id]="'weekly-panel'"
+  >
+    <h2 class="section-title"><span aria-hidden="true">📊</span> 주간점수 리더보드</h2>
     <p class="section-subtitle">이번 주 최고의 활약을 보인 플레이어들</p>
     <div class="leaderboard-table">
-      <table>
+      <table role="table" aria-label="주간점수 리더보드">
         <thead>
           <tr>
             <th>순위</th>
@@ -185,11 +249,17 @@
   </div>
 
   <!-- 일간점수 탭 -->
-  <div class="leaderboard-content" *ngIf="activeTab === 'daily'">
-    <h2 class="section-title">⚡ 일간점수 리더보드</h2>
+  <div
+    class="leaderboard-content"
+    *ngIf="activeTab === 'daily'"
+    role="tabpanel"
+    [attr.aria-labelledby]="'daily-tab'"
+    [id]="'daily-panel'"
+  >
+    <h2 class="section-title"><span aria-hidden="true">⚡</span> 일간점수 리더보드</h2>
     <p class="section-subtitle">오늘 가장 뜨거운 활쏘기 실력자들</p>
     <div class="leaderboard-table">
-      <table>
+      <table role="table" aria-label="일간점수 리더보드">
         <thead>
           <tr>
             <th>순위</th>
@@ -234,4 +304,3 @@
     </div>
   </div>
 </section>
-

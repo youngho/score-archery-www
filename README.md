@@ -8,6 +8,9 @@
 - **TypeScript** - 타입 안전성을 위한 언어
 - **Standalone Components** - 모던 Angular 컴포넌트 구조
 - **CSS3** - 반응형 디자인과 모던 스타일링
+- **ESLint** - 코드 품질 관리
+- **Prettier** - 코드 포맷팅
+- **Lazy Loading** - 성능 최적화를 위한 지연 로딩
 
 ## 📦 설치 및 실행
 
@@ -30,6 +33,18 @@ ng serve
 npm run build
 ```
 
+### 4. 코드 품질 검사
+```bash
+# ESLint 실행
+npm run lint
+
+# Prettier 포맷팅
+npm run format
+
+# Prettier 검사
+npm run format:check
+```
+
 ## 🏗️ 프로젝트 구조
 
 ```
@@ -43,10 +58,16 @@ src/
 │   │   ├── leaderboard/     # 리더보드 섹션
 │   │   ├── news/            # 뉴스 섹션
 │   │   └── footer/          # 푸터
+│   ├── core/                # 핵심 기능
+│   │   ├── error-handler.service.ts  # 전역 에러 핸들러
+│   │   └── types/             # 타입 정의
 │   ├── app.component.*      # 메인 앱 컴포넌트
-│   └── app.routes.ts        # 라우팅 설정
+│   └── app.routes.ts        # 라우팅 설정 (Lazy Loading)
+├── environments/            # 환경 변수 설정
+│   ├── environment.ts       # 개발 환경
+│   └── environment.prod.ts  # 프로덕션 환경
 ├── assets/                  # 정적 자산
-├── index.html              # 메인 HTML
+├── index.html              # 메인 HTML (SEO 메타 태그 포함)
 ├── main.ts                 # 앱 진입점
 └── styles.css              # 글로벌 스타일
 ```
@@ -78,6 +99,17 @@ src/
 
 - **이메일**: support@arrowmaster.com
 - **운영시간**: 평일 09:00 - 18:00
+
+## ✨ 주요 개선 사항
+
+- ✅ **Lazy Loading**: 라우팅 기반 컴포넌트 지연 로딩으로 초기 번들 크기 최적화
+- ✅ **SEO 최적화**: Open Graph, Twitter Card 등 메타 태그 추가
+- ✅ **접근성 개선**: ARIA 속성 및 키보드 네비게이션 지원
+- ✅ **타입 안전성**: TypeScript 인터페이스 및 타입 정의 추가
+- ✅ **에러 핸들링**: 전역 에러 핸들러 구현
+- ✅ **환경 변수 관리**: 개발/프로덕션 환경 분리
+- ✅ **코드 품질**: ESLint 및 Prettier 설정 추가
+- ✅ **성능 최적화**: 프로덕션 빌드 최적화 설정
 
 ## 📄 라이선스
 

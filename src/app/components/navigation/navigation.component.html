@@ -1,13 +1,26 @@
 <!-- 네비게이션 -->
-<nav>
-  <div class="logo">🏹 The Score of Archery</div>
-  <ul class="nav-links">
-    <li><a routerLink="/leaderboard">🏆 리더보드</a></li>
-    <li><a routerLink="/features">특징</a></li>
-    <li><a routerLink="/arrows">특수 화살</a></li>
-    <li><a routerLink="/home">홈</a></li>
-    <li><a routerLink="/news">소식</a></li>
+<nav role="navigation" aria-label="메인 네비게이션">
+  <div class="logo" aria-label="The Score of Archery 로고">
+    <span aria-hidden="true">🏹</span> The Score of Archery
+  </div>
+  <ul class="nav-links" role="menubar">
+    <li role="none">
+      <a routerLink="/leaderboard" role="menuitem" aria-label="리더보드 페이지로 이동">
+        <span aria-hidden="true">🏆</span> 리더보드
+      </a>
+    </li>
+    <li role="none">
+      <a routerLink="/features" role="menuitem" aria-label="게임 특징 페이지로 이동">특징</a>
+    </li>
+    <li role="none">
+      <a routerLink="/arrows" role="menuitem" aria-label="특수 화살 페이지로 이동">특수 화살</a>
+    </li>
+    <li role="none">
+      <a routerLink="/home" role="menuitem" aria-label="홈 페이지로 이동">홈</a>
+    </li>
+    <li role="none">
+      <a routerLink="/news" role="menuitem" aria-label="소식 페이지로 이동">소식</a>
+    </li>
   </ul>
-  <a routerLink="/home" class="download-btn">다운로드</a>
+  <a routerLink="/home" class="download-btn" role="button" aria-label="게임 다운로드">다운로드</a>
 </nav>
-
