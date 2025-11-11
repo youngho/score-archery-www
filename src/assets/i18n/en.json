@@ -1,0 +1,52 @@
+{
+  "app": {
+    "title": "The Score of Archery"
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "arrows": "Special Arrows",
+    "leaderboard": "Leaderboard",
+    "news": "News",
+    "download": "Download"
+  },
+  "arrows": {
+    "title": "Special Arrows",
+    "fire": {
+      "name": "Fire Arrow",
+      "summary": "Area fire damage that burns nearby targets",
+      "description": "Leaves flames at the impact point dealing damage over time. Extremely effective against clustered targets and low-defense enemies."
+    },
+    "ice": {
+      "name": "Ice Arrow",
+      "summary": "Freeze targets to gain time bonus",
+      "description": "Slows or briefly freezes enemies on hit. Great for control and starting combos when you need crowd management."
+    },
+    "lightning": {
+      "name": "Lightning Arrow",
+      "summary": "Chains to multiple targets",
+      "description": "Chains to adjacent targets to distribute damage to many enemies. Excels against scattered groups."
+    },
+    "explosive": {
+      "name": "Explosive Arrow",
+      "summary": "Explodes for heavy AoE damage",
+      "description": "Deals high damage to all enemies within the blast radius. Limited ammo—save it for bosses or dense packs."
+    },
+    "triple": {
+      "name": "Triple Shot",
+      "summary": "Fires three arrows at once",
+      "description": "Covers a wide frontal area with slight spread—best at mid range for optimal performance."
+    },
+    "homing": {
+      "name": "Homing Arrow",
+      "summary": "Auto-tracking for higher accuracy",
+      "description": "Tracks its target to greatly increase hit rate. Ideal for fast-moving targets and long-range engagements."
+    },
+    "stats": {
+      "area": "Area",
+      "control": "Control",
+      "damage": "Damage",
+      "cooldown": "Cooldown"
+    }
+  }
+}

@@ -7,8 +7,8 @@
 
 .arrows-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -16,26 +16,46 @@
 .arrow-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 20px;
+  padding: 1.25rem;
+  border-radius: 16px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  transition:
-    transform 0.3s,
-    background 0.3s;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
   text-align: center;
+  cursor: pointer;
+  color: inherit;
 }
 
-.arrow-card:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.2);
+.arrow-card:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.18); }
+.arrow-card.selected { border-color: #fff; box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+
+.arrow-icon { font-size: 2.25rem; margin-bottom: 0.5rem; }
+.arrow-card h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+.arrow-card p { opacity: 0.95; margin: 0; }
+
+/* 상세 패널 */
+.arrow-detail {
+  max-width: 1000px;
+  margin: 1.5rem auto 0;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-.arrow-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
+.detail-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.detail-icon { font-size: 2rem; }
+.detail-title { margin: 0; }
+.detail-summary { margin: 0.25rem 0 0 0; color: #4b5563; }
+.detail-description { margin: 0.75rem 0 0 0; color: #374151; }
 
-.arrow-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+.detail-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; margin-top: 0.75rem; }
+.stat { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; align-items: center; }
+.stat span { color: #6b7280; font-size: 0.9rem; }
+.stat strong { color: #111827; }
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .arrows { padding: 3rem 1rem; }
+  .arrow-detail { margin-top: 1rem; padding: 1rem; }
 }

@@ -1,26 +1,32 @@
 <!-- 네비게이션 -->
 <nav role="navigation" aria-label="메인 네비게이션">
   <div class="logo" aria-label="The Score of Archery 로고">
-    <span aria-hidden="true">🏹</span> The Score of Archery
+    <span aria-hidden="true">🏹</span> {{ 'app.title' | translate }}
   </div>
   <ul class="nav-links" role="menubar">
     <li role="none">
       <a routerLink="/leaderboard" role="menuitem" aria-label="리더보드 페이지로 이동">
-        <span aria-hidden="true">🏆</span> 리더보드
+        <span aria-hidden="true">🏆</span> {{ 'nav.leaderboard' | translate }}
       </a>
     </li>
     <li role="none">
-      <a routerLink="/features" role="menuitem" aria-label="게임 특징 페이지로 이동">특징</a>
+      <a routerLink="/features" role="menuitem" aria-label="게임 특징 페이지로 이동">{{ 'nav.features' | translate }}</a>
     </li>
     <li role="none">
-      <a routerLink="/arrows" role="menuitem" aria-label="특수 화살 페이지로 이동">특수 화살</a>
+      <a routerLink="/arrows" role="menuitem" aria-label="특수 화살 페이지로 이동">{{ 'nav.arrows' | translate }}</a>
     </li>
     <li role="none">
-      <a routerLink="/home" role="menuitem" aria-label="홈 페이지로 이동">홈</a>
+      <a routerLink="/home" role="menuitem" aria-label="홈 페이지로 이동">{{ 'nav.home' | translate }}</a>
     </li>
     <li role="none">
-      <a routerLink="/news" role="menuitem" aria-label="소식 페이지로 이동">소식</a>
+      <a routerLink="/news" role="menuitem" aria-label="소식 페이지로 이동">{{ 'nav.news' | translate }}</a>
     </li>
   </ul>
-  <a routerLink="/home" class="download-btn" role="button" aria-label="게임 다운로드">다운로드</a>
+  <div style="display:flex; gap:.5rem; align-items:center;">
+    <select (change)="onLangChange(($any($event.target)).value)" aria-label="언어 선택">
+      <option value="ko">한국어</option>
+      <option value="en">English</option>
+    </select>
+    <a routerLink="/home" class="download-btn" role="button" aria-label="게임 다운로드">{{ 'nav.download' | translate }}</a>
+  </div>
 </nav>

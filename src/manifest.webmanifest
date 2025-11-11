@@ -1,0 +1,23 @@
+{
+  "name": "The Score of Archery",
+  "short_name": "Archery",
+  "description": "직관적인 조작과 실감나는 3D 그래픽의 활쏘기 게임 웹사이트",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f14",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon-16x16.svg",
+      "sizes": "16x16",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

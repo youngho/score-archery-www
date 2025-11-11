@@ -94,41 +94,87 @@
       <table role="table" aria-label="누적점수 리더보드">
         <thead>
           <tr>
-            <th>순위</th>
-            <th>플레이어</th>
-            <th>누적점수</th>
-            <th>레벨</th>
+            <th scope="col">순위</th>
+            <th scope="col">플레이어</th>
+            <th scope="col">국가</th>
+            <th scope="col">누적점수</th>
+            <th scope="col">레벨</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="rank rank-1">🥇 1</span></td>
-            <td>ArcherKing</td>
-            <td>1,258,900</td>
+            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
+            <td>
+              <div class="player">
+                <span class="avatar" aria-hidden="true">AK</span>
+                <span class="name">ArcherKing</span>
+              </div>
+            </td>
+            <td><span class="flag" title="대한민국">🇰🇷</span></td>
+            <td>
+              1,258,900
+              <div class="score-bar" aria-hidden="true"><span style="width: 100%"></span></div>
+            </td>
             <td>Master</td>
           </tr>
           <tr>
-            <td><span class="rank rank-2">🥈 2</span></td>
-            <td>BowMaster</td>
-            <td>1,184,500</td>
+            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
+            <td>
+              <div class="player">
+                <span class="avatar" aria-hidden="true">BM</span>
+                <span class="name">BowMaster</span>
+              </div>
+            </td>
+            <td><span class="flag" title="미국">🇺🇸</span></td>
+            <td>
+              1,184,500
+              <div class="score-bar" aria-hidden="true"><span style="width: 94%"></span></div>
+            </td>
             <td>Expert</td>
           </tr>
           <tr>
-            <td><span class="rank rank-3">🥉 3</span></td>
-            <td>TargetHunter</td>
-            <td>1,122,300</td>
+            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
+            <td>
+              <div class="player">
+                <span class="avatar" aria-hidden="true">TH</span>
+                <span class="name">TargetHunter</span>
+              </div>
+            </td>
+            <td><span class="flag" title="일본">🇯🇵</span></td>
+            <td>
+              1,122,300
+              <div class="score-bar" aria-hidden="true"><span style="width: 89%"></span></div>
+            </td>
             <td>Expert</td>
           </tr>
           <tr>
             <td><span class="rank">4</span></td>
-            <td>ArrowPro</td>
-            <td>985,600</td>
+            <td>
+              <div class="player">
+                <span class="avatar" aria-hidden="true">AP</span>
+                <span class="name">ArrowPro</span>
+              </div>
+            </td>
+            <td><span class="flag" title="독일">🇩🇪</span></td>
+            <td>
+              985,600
+              <div class="score-bar" aria-hidden="true"><span style="width: 78%"></span></div>
+            </td>
             <td>Advanced</td>
           </tr>
           <tr>
             <td><span class="rank">5</span></td>
-            <td>SharpShooter</td>
-            <td>951,200</td>
+            <td>
+              <div class="player">
+                <span class="avatar" aria-hidden="true">SS</span>
+                <span class="name">SharpShooter</span>
+              </div>
+            </td>
+            <td><span class="flag" title="영국">🇬🇧</span></td>
+            <td>
+              951,200
+              <div class="score-bar" aria-hidden="true"><span style="width: 76%"></span></div>
+            </td>
             <td>Advanced</td>
           </tr>
         </tbody>
@@ -150,41 +196,47 @@
       <table role="table" aria-label="월간점수 리더보드">
         <thead>
           <tr>
-            <th>순위</th>
-            <th>플레이어</th>
-            <th>월간점수</th>
-            <th>게임수</th>
+            <th scope="col">순위</th>
+            <th scope="col">플레이어</th>
+            <th scope="col">국가</th>
+            <th scope="col">월간점수</th>
+            <th scope="col">게임수</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="rank rank-1">🥇 1</span></td>
-            <td>MonthlyKing</td>
-            <td>89,450</td>
+            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
+            <td><div class="player"><span class="avatar">MK</span><span class="name">MonthlyKing</span></div></td>
+            <td><span class="flag" title="대한민국">🇰🇷</span></td>
+            <td>89,450<div class="score-bar"><span style="width: 100%"></span></div></td>
             <td>156</td>
           </tr>
           <tr>
-            <td><span class="rank rank-2">🥈 2</span></td>
-            <td>JanuaryWarrior</td>
-            <td>82,300</td>
+            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
+            <td><div class="player"><span class="avatar">JW</span><span class="name">JanuaryWarrior</span></div></td>
+            <td><span class="flag" title="미국">🇺🇸</span></td>
+            <td>82,300<div class="score-bar"><span style="width: 92%"></span></div></td>
             <td>142</td>
           </tr>
           <tr>
-            <td><span class="rank rank-3">🥉 3</span></td>
-            <td>NewYearArcher</td>
-            <td>78,900</td>
+            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
+            <td><div class="player"><span class="avatar">NA</span><span class="name">NewYearArcher</span></div></td>
+            <td><span class="flag" title="일본">🇯🇵</span></td>
+            <td>78,900<div class="score-bar"><span style="width: 88%"></span></div></td>
             <td>135</td>
           </tr>
           <tr>
             <td><span class="rank">4</span></td>
-            <td>WinterHunter</td>
-            <td>75,200</td>
+            <td><div class="player"><span class="avatar">WH</span><span class="name">WinterHunter</span></div></td>
+            <td><span class="flag" title="독일">🇩🇪</span></td>
+            <td>75,200<div class="score-bar"><span style="width: 84%"></span></div></td>
             <td>128</td>
           </tr>
           <tr>
             <td><span class="rank">5</span></td>
-            <td>FrostBow</td>
-            <td>71,800</td>
+            <td><div class="player"><span class="avatar">FB</span><span class="name">FrostBow</span></div></td>
+            <td><span class="flag" title="영국">🇬🇧</span></td>
+            <td>71,800<div class="score-bar"><span style="width: 80%"></span></div></td>
             <td>119</td>
           </tr>
         </tbody>
@@ -206,41 +258,47 @@
       <table role="table" aria-label="주간점수 리더보드">
         <thead>
           <tr>
-            <th>순위</th>
-            <th>플레이어</th>
-            <th>주간점수</th>
-            <th>평균점수</th>
+            <th scope="col">순위</th>
+            <th scope="col">플레이어</th>
+            <th scope="col">국가</th>
+            <th scope="col">주간점수</th>
+            <th scope="col">평균점수</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="rank rank-1">🥇 1</span></td>
-            <td>WeeklyChamp</td>
-            <td>24,850</td>
+            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
+            <td><div class="player"><span class="avatar">WC</span><span class="name">WeeklyChamp</span></div></td>
+            <td><span class="flag" title="대한민국">🇰🇷</span></td>
+            <td>24,850<div class="score-bar"><span style="width: 100%"></span></div></td>
             <td>1,658</td>
           </tr>
           <tr>
-            <td><span class="rank rank-2">🥈 2</span></td>
-            <td>WeekendWarrior</td>
-            <td>22,100</td>
+            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
+            <td><div class="player"><span class="avatar">WW</span><span class="name">WeekendWarrior</span></div></td>
+            <td><span class="flag" title="미국">🇺🇸</span></td>
+            <td>22,100<div class="score-bar"><span style="width: 89%"></span></div></td>
             <td>1,573</td>
           </tr>
           <tr>
-            <td><span class="rank rank-3">🥉 3</span></td>
-            <td>SevenDays</td>
-            <td>20,750</td>
+            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
+            <td><div class="player"><span class="avatar">SD</span><span class="name">SevenDays</span></div></td>
+            <td><span class="flag" title="일본">🇯🇵</span></td>
+            <td>20,750<div class="score-bar"><span style="width: 83%"></span></div></td>
             <td>1,482</td>
           </tr>
           <tr>
             <td><span class="rank">4</span></td>
-            <td>WeekHero</td>
-            <td>19,200</td>
+            <td><div class="player"><span class="avatar">WH</span><span class="name">WeekHero</span></div></td>
+            <td><span class="flag" title="독일">🇩🇪</span></td>
+            <td>19,200<div class="score-bar"><span style="width: 77%"></span></div></td>
             <td>1,371</td>
           </tr>
           <tr>
             <td><span class="rank">5</span></td>
-            <td>WeeklyStar</td>
-            <td>18,650</td>
+            <td><div class="player"><span class="avatar">WS</span><span class="name">WeeklyStar</span></div></td>
+            <td><span class="flag" title="영국">🇬🇧</span></td>
+            <td>18,650<div class="score-bar"><span style="width: 75%"></span></div></td>
             <td>1,332</td>
           </tr>
         </tbody>
@@ -262,41 +320,47 @@
       <table role="table" aria-label="일간점수 리더보드">
         <thead>
           <tr>
-            <th>순위</th>
-            <th>플레이어</th>
-            <th>일간점수</th>
-            <th>최고점수</th>
+            <th scope="col">순위</th>
+            <th scope="col">플레이어</th>
+            <th scope="col">국가</th>
+            <th scope="col">일간점수</th>
+            <th scope="col">최고점수</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="rank rank-1">🥇 1</span></td>
-            <td>DailyKing</td>
-            <td>8,950</td>
+            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
+            <td><div class="player"><span class="avatar">DK</span><span class="name">DailyKing</span></div></td>
+            <td><span class="flag" title="대한민국">🇰🇷</span></td>
+            <td>8,950<div class="score-bar"><span style="width: 100%"></span></div></td>
             <td>2,340</td>
           </tr>
           <tr>
-            <td><span class="rank rank-2">🥈 2</span></td>
-            <td>TodayWinner</td>
-            <td>8,200</td>
+            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
+            <td><div class="player"><span class="avatar">TW</span><span class="name">TodayWinner</span></div></td>
+            <td><span class="flag" title="미국">🇺🇸</span></td>
+            <td>8,200<div class="score-bar"><span style="width: 92%"></span></div></td>
             <td>2,180</td>
           </tr>
           <tr>
-            <td><span class="rank rank-3">🥉 3</span></td>
-            <td>DayShooter</td>
-            <td>7,850</td>
+            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
+            <td><div class="player"><span class="avatar">DS</span><span class="name">DayShooter</span></div></td>
+            <td><span class="flag" title="일본">🇯🇵</span></td>
+            <td>7,850<div class="score-bar"><span style="width: 88%"></span></div></td>
             <td>2,090</td>
           </tr>
           <tr>
             <td><span class="rank">4</span></td>
-            <td>TodayHunter</td>
-            <td>7,450</td>
+            <td><div class="player"><span class="avatar">TH</span><span class="name">TodayHunter</span></div></td>
+            <td><span class="flag" title="독일">🇩🇪</span></td>
+            <td>7,450<div class="score-bar"><span style="width: 83%"></span></div></td>
             <td>1,980</td>
           </tr>
           <tr>
             <td><span class="rank">5</span></td>
-            <td>DailyPro</td>
-            <td>7,100</td>
+            <td><div class="player"><span class="avatar">DP</span><span class="name">DailyPro</span></div></td>
+            <td><span class="flag" title="영국">🇬🇧</span></td>
+            <td>7,100<div class="score-bar"><span style="width: 79%"></span></div></td>
             <td>1,890</td>
           </tr>
         </tbody>

@@ -1,36 +1,37 @@
 <!-- 특수 화살 섹션 -->
 <section id="arrows" class="arrows">
-  <h2 class="section-title">특수 화살</h2>
-  <div class="arrows-grid">
-    <div class="arrow-card">
-      <div class="arrow-icon">🔥</div>
-      <h3>불화살</h3>
-      <p>범위 화염 피해로 주변 타겟까지 공격</p>
+  <h2 class="section-title">{{ 'arrows.title' | translate }}</h2>
+  <div class="arrows-grid" role="list">
+    <button
+      *ngFor="let a of arrows"
+      class="arrow-card"
+      role="listitem"
+      type="button"
+      [class.selected]="a.id === selectedId"
+      (click)="selectArrow(a.id)"
+      [attr.aria-pressed]="a.id === selectedId ? 'true' : 'false'"
+      [attr.aria-label]="((('arrows.' + a.id + '.name') | translate) + ' 선택')"
+    >
+      <div class="arrow-icon" aria-hidden="true">{{ a.icon }}</div>
+      <h3>{{ ('arrows.' + a.id + '.name') | translate }}</h3>
+      <p>{{ ('arrows.' + a.id + '.summary') | translate }}</p>
+    </button>
+  </div>
+
+  <div *ngIf="selected as s" class="arrow-detail" aria-live="polite">
+    <div class="detail-header">
+      <div class="detail-icon" aria-hidden="true">{{ s.icon }}</div>
+      <div>
+        <h3 class="detail-title">{{ ('arrows.' + s.id + '.name') | translate }}</h3>
+        <p class="detail-summary">{{ ('arrows.' + s.id + '.summary') | translate }}</p>
+      </div>
     </div>
-    <div class="arrow-card">
-      <div class="arrow-icon">❄️</div>
-      <h3>얼음화살</h3>
-      <p>타겟을 얼려 시간 보너스 획득</p>
-    </div>
-    <div class="arrow-card">
-      <div class="arrow-icon">⚡</div>
-      <h3>번개화살</h3>
-      <p>여러 타겟에 연쇄 공격</p>
-    </div>
-    <div class="arrow-card">
-      <div class="arrow-icon">💥</div>
-      <h3>폭발화살</h3>
-      <p>폭발로 광역 타격</p>
-    </div>
-    <div class="arrow-card">
-      <div class="arrow-icon">🎯</div>
-      <h3>트리플샷</h3>
-      <p>한 번에 3개 화살 발사</p>
-    </div>
-    <div class="arrow-card">
-      <div class="arrow-icon">🌟</div>
-      <h3>유도화살</h3>
-      <p>자동 추적으로 명중률 상승</p>
+    <p class="detail-description">{{ ('arrows.' + s.id + '.description') | translate }}</p>
+    <div class="detail-stats">
+      <div class="stat"><span>{{ 'arrows.stats.area' | translate }}</span><strong>{{ s.stats?.area }}</strong></div>
+      <div class="stat"><span>{{ 'arrows.stats.control' | translate }}</span><strong>{{ s.stats?.control }}</strong></div>
+      <div class="stat"><span>{{ 'arrows.stats.damage' | translate }}</span><strong>{{ s.stats?.damage }}</strong></div>
+      <div class="stat"><span>{{ 'arrows.stats.cooldown' | translate }}</span><strong>{{ s.stats?.cooldown }}</strong></div>
     </div>
   </div>
 </section>

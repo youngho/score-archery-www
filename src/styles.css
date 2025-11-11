@@ -6,4 +6,110 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  padding-top: var(--nav-height, 64px);
+}
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #121212;
+  --color-muted: #6b7280;
+  --color-primary: #0ea5e9;
+  --color-surface: #f3f4f6;
+  --color-border: #e5e7eb;
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  /* Layout */
+  --nav-height: 64px;
+}
+
+html, body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4);
+}
+
+section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--space-4);
+  margin-block: var(--space-5);
+}
+
+.section-title {
+  margin: 0 0 var(--space-3) 0;
+}
+.section-subtitle {
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-muted);
+}
+
+/* Navigation spacing */
+.nav-links {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-links li { margin: 0; }
+
+/* App store buttons and tabs spacing */
+.app-buttons { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.tab-buttons { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+.nav-links a,
+.download-btn,
+.tab-btn {
+  color: var(--color-text);
+}
+
+.nav-links a:hover,
+.download-btn:hover { text-decoration: underline; }
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+.tab-btn.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* Table spacing */
+.leaderboard-table table { width: 100%; border-collapse: collapse; }
+.leaderboard-table th, .leaderboard-table td { padding: 0.5rem 0.75rem; }
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  main { padding: var(--space-6) var(--space-5); }
+  section { padding: var(--space-5); margin-block: var(--space-6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

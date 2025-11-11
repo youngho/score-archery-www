@@ -3,7 +3,7 @@
 
 <!-- 메인 콘텐츠 - 라우팅 기반 -->
 <main>
-  <router-outlet></router-outlet>
+  <router-outlet #o="outlet" [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']"></router-outlet>
 </main>
 
 <!-- 푸터 -->

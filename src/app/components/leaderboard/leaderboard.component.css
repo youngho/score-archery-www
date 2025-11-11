@@ -45,15 +45,13 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.app-btn span {
-  font-size: 1.5rem;
-}
+.app-btn span { font-size: 1.5rem; }
 
 /* 탭 메뉴 */
 .leaderboard-tabs {
-  background: white;
+  background: var(--color-bg);
   padding: 2rem 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
 .tab-buttons {
@@ -66,117 +64,112 @@
 }
 
 .tab-btn {
-  background: #f8f9fa;
-  border: none;
-  padding: 1rem 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 0.75rem 1.25rem;
   border-radius: 25px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  color: #6c757d;
+  transition: background 0.2s ease, transform 0.2s ease;
+  color: var(--color-text);
 }
 
-.tab-btn:hover {
-  background: #e9ecef;
-  transform: translateY(-2px);
-}
+.tab-btn:hover { background: rgba(0, 0, 0, 0.04); }
+
+:root[data-theme='dark'] .tab-btn:hover { background: rgba(255,255,255,0.06); }
 
 .tab-btn.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.35);
 }
 
 /* 리더보드 섹션 */
 .leaderboard {
   padding: 3rem 2rem 5rem;
-  background: #f8f9fa;
+  background: var(--color-bg);
 }
 
 .section-subtitle {
   text-align: center;
-  color: #6c757d;
-  margin-bottom: 3rem;
-  font-size: 1.1rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
 }
 
 .leaderboard-table {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  background: white;
-  border-radius: 20px;
+  background: var(--color-surface);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
 }
 
-.leaderboard-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
+.leaderboard-table table { width: 100%; border-collapse: separate; border-spacing: 0; }
 
-.leaderboard-table th {
+.leaderboard-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
-.leaderboard-table td {
-  padding: 1.5rem;
-  border-bottom: 1px solid #eee;
-  font-size: 1rem;
+.leaderboard-table tbody td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
 }
 
-.leaderboard-table tr:hover {
-  background: #f8f9fa;
-}
+.leaderboard-table tbody tr:hover { background: rgba(0, 0, 0, 0.03); }
+:root[data-theme='dark'] .leaderboard-table tbody tr:hover { background: rgba(255,255,255,0.04); }
 
-.rank {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* Player cell */
+.player { display: inline-flex; align-items: center; gap: 0.75rem; }
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.15);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
 }
+.name { font-weight: 600; }
+.flag { font-size: 1.1rem; }
 
-.rank-1 {
-  color: #ffd700;
-}
-.rank-2 {
-  color: #c0c0c0;
-}
-.rank-3 {
-  color: #cd7f32;
-}
+/* Rank badges */
+.rank-badge { font-weight: 800; font-size: 1.05rem; }
+.rank-badge.gold { color: #ffd700; }
+.rank-badge.silver { color: #c0c0c0; }
+.rank-badge.bronze { color: #cd7f32; }
+.rank { font-weight: 700; }
+
+/* Score bar */
+.score-bar { position: relative; height: 6px; background: var(--color-border); border-radius: 999px; margin-top: 6px; }
+.score-bar > span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--color-primary); border-radius: 999px; }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
+  .hero-content h1 { font-size: 2.5rem; }
+  .hero-content p { font-size: 1.1rem; }
 
-  .hero-content p {
-    font-size: 1.1rem;
-  }
+  .tab-buttons { flex-direction: column; align-items: center; }
+  .tab-btn { width: 100%; max-width: 320px; }
 
-  .app-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .tab-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .tab-btn {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .leaderboard-table th,
-  .leaderboard-table td {
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
+  .leaderboard-table thead { display: none; }
+  .leaderboard-table table, .leaderboard-table tbody, .leaderboard-table tr, .leaderboard-table td { display: block; width: 100%; }
+  .leaderboard-table tr { border-bottom: 1px solid var(--color-border); padding: 0.5rem 0; }
+  .leaderboard-table td { border: none; padding: 0.5rem 1rem; }
+  .leaderboard-table td::before { content: attr(data-label); display: block; font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.25rem; }
 }
