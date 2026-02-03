@@ -8,7 +8,22 @@
     "arrows": "Special Arrows",
     "leaderboard": "Leaderboard",
     "news": "News",
-    "download": "Download"
+    "download": "Download",
+    "admin": "Admin"
+  },
+  "admin": {
+    "title": "Active Users Monitor",
+    "description": "Users with an active session (in-game or recently active).",
+    "activeCount": "Active users: {{count}}",
+    "refresh": "Refresh",
+    "refreshing": "Loading…",
+    "empty": "No active users.",
+    "table": {
+      "nickname": "Nickname",
+      "publicId": "Public ID",
+      "lastActivity": "Last activity",
+      "device": "Device"
+    }
   },
   "arrows": {
     "title": "Special Arrows",

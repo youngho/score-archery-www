@@ -21,6 +21,9 @@
     <li role="none">
       <a routerLink="/news" role="menuitem" aria-label="소식 페이지로 이동">{{ 'nav.news' | translate }}</a>
     </li>
+    <li role="none">
+      <a routerLink="/admin" role="menuitem" aria-label="관리자 페이지로 이동">{{ 'nav.admin' | translate }}</a>
+    </li>
   </ul>
   <div style="display:flex; gap:.5rem; align-items:center;">
     <select (change)="onLangChange(($any($event.target)).value)" aria-label="언어 선택">

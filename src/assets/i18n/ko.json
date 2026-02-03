@@ -8,7 +8,22 @@
     "arrows": "특수 화살",
     "leaderboard": "리더보드",
     "news": "소식",
-    "download": "다운로드"
+    "download": "다운로드",
+    "admin": "관리자"
+  },
+  "admin": {
+    "title": "활성 사용자 모니터링",
+    "description": "현재 세션이 유효한(게임 중이거나 최근 활동한) 사용자 목록입니다.",
+    "activeCount": "활성 사용자: {{count}}명",
+    "refresh": "새로고침",
+    "refreshing": "불러오는 중…",
+    "empty": "활성 사용자가 없습니다.",
+    "table": {
+      "nickname": "닉네임",
+      "publicId": "Public ID",
+      "lastActivity": "마지막 활동",
+      "device": "기기"
+    }
   },
   "arrows": {
     "title": "특수 화살",

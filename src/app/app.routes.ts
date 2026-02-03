@@ -7,5 +7,6 @@ export const routes: Routes = [
   { path: 'arrows', loadComponent: () => import('./components/arrows/arrows.component').then(m => m.ArrowsComponent), data: { animation: 'arrows' } },
   { path: 'leaderboard', loadComponent: () => import('./components/leaderboard/leaderboard.component').then(m => m.LeaderboardComponent), data: { animation: 'leaderboard' } },
   { path: 'news', loadComponent: () => import('./components/news/news.component').then(m => m.NewsComponent), data: { animation: 'news' } },
+  { path: 'admin', loadComponent: () => import('./components/admin/admin.component').then(m => m.AdminComponent), data: { animation: 'admin' } },
   { path: '**', loadComponent: () => import('./components/not-found/not-found.component').then(m => m.NotFoundComponent), data: { animation: 'notfound' } }
 ];

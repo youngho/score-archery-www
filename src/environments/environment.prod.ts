@@ -1,7 +1,7 @@
 // 프로덕션 환경 설정
 export const environment = {
   production: true,
-  apiUrl: 'https://api.score-archery.com/api',
+  apiUrl: 'https://158.179.161.203:8080',
   appName: 'The Score of Archery',
   appVersion: '1.0.0',
   supportEmail: 'support@arrowmaster.com',

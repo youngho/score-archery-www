@@ -41,3 +41,12 @@ export interface AppConfig {
   appStoreUrl: string;
   playStoreUrl: string;
 }
+
+/** Admin: user with active session (currently in-game or recently active) */
+export interface ActiveUser {
+  publicId: string;
+  nickname: string;
+  lastActivityAt: string;
+  deviceType: string | null;
+  sessionId: string;
+}

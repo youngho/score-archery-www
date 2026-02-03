@@ -1,0 +1,38 @@
+<main class="admin-page">
+  <header class="admin-header">
+    <h1>{{ 'admin.title' | translate }}</h1>
+    <p class="admin-desc">{{ 'admin.description' | translate }}</p>
+    <div class="admin-actions">
+      <span class="count" *ngIf="!loading()">{{ 'admin.activeCount' | translate:{ count: count() } }}</span>
+      <button type="button" class="refresh-btn" (click)="load()" [disabled]="loading()" aria-label="새로고침">
+        {{ loading() ? ('admin.refreshing' | translate) : ('admin.refresh' | translate) }}
+      </button>
+    </div>
+  </header>
+
+  <div class="error-message" *ngIf="error()" role="alert">
+    {{ error() }}
+  </div>
+
+  <section class="table-wrap" *ngIf="!loading() && !error()">
+    <table class="admin-table" *ngIf="users().length > 0">
+      <thead>
+        <tr>
+          <th>{{ 'admin.table.nickname' | translate }}</th>
+          <th>{{ 'admin.table.publicId' | translate }}</th>
+          <th>{{ 'admin.table.lastActivity' | translate }}</th>
+          <th>{{ 'admin.table.device' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users(); trackBy: trackByPublicId">
+          <td>{{ u.nickname }}</td>
+          <td><code>{{ u.publicId }}</code></td>
+          <td>{{ formatDate(u.lastActivityAt) }}</td>
+          <td>{{ u.deviceType || '—' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="empty-message" *ngIf="users().length === 0">{{ 'admin.empty' | translate }}</p>
+  </section>
+</main>
