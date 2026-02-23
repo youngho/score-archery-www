@@ -33,10 +33,27 @@ html, body {
   color: var(--color-text);
 }
 
+/* 전체 레이아웃: 메인 콘텐츠 항상 가운데 정렬 */
+app-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+app-navigation,
+app-footer {
+  width: 100%;
+}
+
 main {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: var(--space-5) var(--space-4);
+  text-align: center;
+  box-sizing: border-box;
 }
 
 section {
@@ -45,14 +62,26 @@ section {
   border-radius: 12px;
   padding: var(--space-4);
   margin-block: var(--space-5);
+  text-align: center;
+}
+
+/* 테이블 블록 가운데, 셀 내용 가운데 정렬 */
+.leaderboard-table {
+  text-align: center;
+}
+.leaderboard-table table {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-title {
   margin: 0 0 var(--space-3) 0;
+  text-align: center;
 }
 .section-subtitle {
   margin: 0 0 var(--space-4) 0;
   color: var(--color-muted);
+  text-align: center;
 }
 
 /* Navigation spacing */
@@ -68,7 +97,7 @@ section {
 
 /* App store buttons and tabs spacing */
 .app-buttons { display: flex; gap: var(--space-3); flex-wrap: wrap; }
-.tab-buttons { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.tab-buttons { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: center; }
 
 .nav-links a,
 .download-btn,

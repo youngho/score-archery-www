@@ -1,5 +1,6 @@
 <!-- 네비게이션 -->
 <nav role="navigation" aria-label="메인 네비게이션">
+  <div class="nav-inner">
   <div class="logo" aria-label="The Score of Archery 로고">
     <span aria-hidden="true">🏹</span> {{ 'app.title' | translate }}
   </div>
@@ -31,5 +32,6 @@
       <option value="en">English</option>
     </select>
     <a routerLink="/home" class="download-btn" role="button" aria-label="게임 다운로드">{{ 'nav.download' | translate }}</a>
+  </div>
   </div>
 </nav>
