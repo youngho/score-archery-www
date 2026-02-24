@@ -90,7 +90,9 @@
       <span aria-hidden="true">🏆</span> 누적점수 리더보드
     </h2>
     <p class="section-subtitle">게임 오픈부터 현재까지의 총 누적 점수</p>
-    <div class="leaderboard-table">
+    <p *ngIf="error" class="error-message" role="alert">{{ error }}</p>
+    <div *ngIf="loading" class="loading-message" aria-live="polite">불러오는 중…</div>
+    <div class="leaderboard-table" *ngIf="!loading && !error">
       <table role="table" aria-label="누적점수 리더보드">
         <thead>
           <tr>
@@ -102,80 +104,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
-            <td>
+          <tr *ngFor="let entry of entries" [attr.data-label]="'순위 ' + entry.rank">
+            <td data-label="순위"><span [class]="rankClass(entry.rank)" [attr.aria-label]="entry.rank + '위'">{{ rankLabel(entry.rank) }}</span></td>
+            <td data-label="플레이어">
               <div class="player">
-                <span class="avatar" aria-hidden="true">AK</span>
-                <span class="name">ArcherKing</span>
+                <span class="avatar" aria-hidden="true">{{ avatarInitials(entry.playerName) }}</span>
+                <span class="name">{{ entry.playerName }}</span>
               </div>
             </td>
-            <td><span class="flag" title="대한민국">🇰🇷</span></td>
-            <td>
-              1,258,900
-              <div class="score-bar" aria-hidden="true"><span style="width: 100%"></span></div>
+            <td data-label="국가"><span class="flag" [title]="entry.country ?? ''">{{ entry.country ?? '-' }}</span></td>
+            <td data-label="누적점수">
+              {{ formatScore(entry.score) }}
+              <div class="score-bar" aria-hidden="true" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
             </td>
-            <td>Master</td>
+            <td data-label="레벨">{{ formatScore(entry.extra) }}</td>
           </tr>
-          <tr>
-            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
-            <td>
-              <div class="player">
-                <span class="avatar" aria-hidden="true">BM</span>
-                <span class="name">BowMaster</span>
-              </div>
-            </td>
-            <td><span class="flag" title="미국">🇺🇸</span></td>
-            <td>
-              1,184,500
-              <div class="score-bar" aria-hidden="true"><span style="width: 94%"></span></div>
-            </td>
-            <td>Expert</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
-            <td>
-              <div class="player">
-                <span class="avatar" aria-hidden="true">TH</span>
-                <span class="name">TargetHunter</span>
-              </div>
-            </td>
-            <td><span class="flag" title="일본">🇯🇵</span></td>
-            <td>
-              1,122,300
-              <div class="score-bar" aria-hidden="true"><span style="width: 89%"></span></div>
-            </td>
-            <td>Expert</td>
-          </tr>
-          <tr>
-            <td><span class="rank">4</span></td>
-            <td>
-              <div class="player">
-                <span class="avatar" aria-hidden="true">AP</span>
-                <span class="name">ArrowPro</span>
-              </div>
-            </td>
-            <td><span class="flag" title="독일">🇩🇪</span></td>
-            <td>
-              985,600
-              <div class="score-bar" aria-hidden="true"><span style="width: 78%"></span></div>
-            </td>
-            <td>Advanced</td>
-          </tr>
-          <tr>
-            <td><span class="rank">5</span></td>
-            <td>
-              <div class="player">
-                <span class="avatar" aria-hidden="true">SS</span>
-                <span class="name">SharpShooter</span>
-              </div>
-            </td>
-            <td><span class="flag" title="영국">🇬🇧</span></td>
-            <td>
-              951,200
-              <div class="score-bar" aria-hidden="true"><span style="width: 76%"></span></div>
-            </td>
-            <td>Advanced</td>
+          <tr *ngIf="entries.length === 0">
+            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>
@@ -192,7 +137,9 @@
   >
     <h2 class="section-title"><span aria-hidden="true">📅</span> 월간점수 리더보드</h2>
     <p class="section-subtitle">이번 달 가장 높은 점수를 기록한 플레이어들</p>
-    <div class="leaderboard-table">
+    <p *ngIf="error" class="error-message" role="alert">{{ error }}</p>
+    <div *ngIf="loading" class="loading-message" aria-live="polite">불러오는 중…</div>
+    <div class="leaderboard-table" *ngIf="!loading && !error">
       <table role="table" aria-label="월간점수 리더보드">
         <thead>
           <tr>
@@ -204,40 +151,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
-            <td><div class="player"><span class="avatar">MK</span><span class="name">MonthlyKing</span></div></td>
-            <td><span class="flag" title="대한민국">🇰🇷</span></td>
-            <td>89,450<div class="score-bar"><span style="width: 100%"></span></div></td>
-            <td>156</td>
+          <tr *ngFor="let entry of entries">
+            <td data-label="순위"><span [class]="rankClass(entry.rank)" [attr.aria-label]="entry.rank + '위'">{{ rankLabel(entry.rank) }}</span></td>
+            <td data-label="플레이어">
+              <div class="player">
+                <span class="avatar" aria-hidden="true">{{ avatarInitials(entry.playerName) }}</span>
+                <span class="name">{{ entry.playerName }}</span>
+              </div>
+            </td>
+            <td data-label="국가"><span class="flag" [title]="entry.country ?? ''">{{ entry.country ?? '-' }}</span></td>
+            <td data-label="월간점수">
+              {{ formatScore(entry.score) }}
+              <div class="score-bar" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
+            </td>
+            <td data-label="게임수">{{ formatScore(entry.extra) }}</td>
           </tr>
-          <tr>
-            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
-            <td><div class="player"><span class="avatar">JW</span><span class="name">JanuaryWarrior</span></div></td>
-            <td><span class="flag" title="미국">🇺🇸</span></td>
-            <td>82,300<div class="score-bar"><span style="width: 92%"></span></div></td>
-            <td>142</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
-            <td><div class="player"><span class="avatar">NA</span><span class="name">NewYearArcher</span></div></td>
-            <td><span class="flag" title="일본">🇯🇵</span></td>
-            <td>78,900<div class="score-bar"><span style="width: 88%"></span></div></td>
-            <td>135</td>
-          </tr>
-          <tr>
-            <td><span class="rank">4</span></td>
-            <td><div class="player"><span class="avatar">WH</span><span class="name">WinterHunter</span></div></td>
-            <td><span class="flag" title="독일">🇩🇪</span></td>
-            <td>75,200<div class="score-bar"><span style="width: 84%"></span></div></td>
-            <td>128</td>
-          </tr>
-          <tr>
-            <td><span class="rank">5</span></td>
-            <td><div class="player"><span class="avatar">FB</span><span class="name">FrostBow</span></div></td>
-            <td><span class="flag" title="영국">🇬🇧</span></td>
-            <td>71,800<div class="score-bar"><span style="width: 80%"></span></div></td>
-            <td>119</td>
+          <tr *ngIf="entries.length === 0">
+            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>
@@ -254,7 +184,9 @@
   >
     <h2 class="section-title"><span aria-hidden="true">📊</span> 주간점수 리더보드</h2>
     <p class="section-subtitle">이번 주 최고의 활약을 보인 플레이어들</p>
-    <div class="leaderboard-table">
+    <p *ngIf="error" class="error-message" role="alert">{{ error }}</p>
+    <div *ngIf="loading" class="loading-message" aria-live="polite">불러오는 중…</div>
+    <div class="leaderboard-table" *ngIf="!loading && !error">
       <table role="table" aria-label="주간점수 리더보드">
         <thead>
           <tr>
@@ -266,40 +198,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
-            <td><div class="player"><span class="avatar">WC</span><span class="name">WeeklyChamp</span></div></td>
-            <td><span class="flag" title="대한민국">🇰🇷</span></td>
-            <td>24,850<div class="score-bar"><span style="width: 100%"></span></div></td>
-            <td>1,658</td>
+          <tr *ngFor="let entry of entries">
+            <td data-label="순위"><span [class]="rankClass(entry.rank)" [attr.aria-label]="entry.rank + '위'">{{ rankLabel(entry.rank) }}</span></td>
+            <td data-label="플레이어">
+              <div class="player">
+                <span class="avatar" aria-hidden="true">{{ avatarInitials(entry.playerName) }}</span>
+                <span class="name">{{ entry.playerName }}</span>
+              </div>
+            </td>
+            <td data-label="국가"><span class="flag" [title]="entry.country ?? ''">{{ entry.country ?? '-' }}</span></td>
+            <td data-label="주간점수">
+              {{ formatScore(entry.score) }}
+              <div class="score-bar" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
+            </td>
+            <td data-label="평균점수">{{ formatScore(entry.extra) }}</td>
           </tr>
-          <tr>
-            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
-            <td><div class="player"><span class="avatar">WW</span><span class="name">WeekendWarrior</span></div></td>
-            <td><span class="flag" title="미국">🇺🇸</span></td>
-            <td>22,100<div class="score-bar"><span style="width: 89%"></span></div></td>
-            <td>1,573</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
-            <td><div class="player"><span class="avatar">SD</span><span class="name">SevenDays</span></div></td>
-            <td><span class="flag" title="일본">🇯🇵</span></td>
-            <td>20,750<div class="score-bar"><span style="width: 83%"></span></div></td>
-            <td>1,482</td>
-          </tr>
-          <tr>
-            <td><span class="rank">4</span></td>
-            <td><div class="player"><span class="avatar">WH</span><span class="name">WeekHero</span></div></td>
-            <td><span class="flag" title="독일">🇩🇪</span></td>
-            <td>19,200<div class="score-bar"><span style="width: 77%"></span></div></td>
-            <td>1,371</td>
-          </tr>
-          <tr>
-            <td><span class="rank">5</span></td>
-            <td><div class="player"><span class="avatar">WS</span><span class="name">WeeklyStar</span></div></td>
-            <td><span class="flag" title="영국">🇬🇧</span></td>
-            <td>18,650<div class="score-bar"><span style="width: 75%"></span></div></td>
-            <td>1,332</td>
+          <tr *ngIf="entries.length === 0">
+            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>
@@ -316,7 +231,9 @@
   >
     <h2 class="section-title"><span aria-hidden="true">⚡</span> 일간점수 리더보드</h2>
     <p class="section-subtitle">오늘 가장 뜨거운 활쏘기 실력자들</p>
-    <div class="leaderboard-table">
+    <p *ngIf="error" class="error-message" role="alert">{{ error }}</p>
+    <div *ngIf="loading" class="loading-message" aria-live="polite">불러오는 중…</div>
+    <div class="leaderboard-table" *ngIf="!loading && !error">
       <table role="table" aria-label="일간점수 리더보드">
         <thead>
           <tr>
@@ -328,40 +245,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><span class="rank-badge gold" aria-label="1위">🥇 1</span></td>
-            <td><div class="player"><span class="avatar">DK</span><span class="name">DailyKing</span></div></td>
-            <td><span class="flag" title="대한민국">🇰🇷</span></td>
-            <td>8,950<div class="score-bar"><span style="width: 100%"></span></div></td>
-            <td>2,340</td>
+          <tr *ngFor="let entry of entries">
+            <td data-label="순위"><span [class]="rankClass(entry.rank)" [attr.aria-label]="entry.rank + '위'">{{ rankLabel(entry.rank) }}</span></td>
+            <td data-label="플레이어">
+              <div class="player">
+                <span class="avatar" aria-hidden="true">{{ avatarInitials(entry.playerName) }}</span>
+                <span class="name">{{ entry.playerName }}</span>
+              </div>
+            </td>
+            <td data-label="국가"><span class="flag" [title]="entry.country ?? ''">{{ entry.country ?? '-' }}</span></td>
+            <td data-label="일간점수">
+              {{ formatScore(entry.score) }}
+              <div class="score-bar" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
+            </td>
+            <td data-label="최고점수">{{ formatScore(entry.extra) }}</td>
           </tr>
-          <tr>
-            <td><span class="rank-badge silver" aria-label="2위">🥈 2</span></td>
-            <td><div class="player"><span class="avatar">TW</span><span class="name">TodayWinner</span></div></td>
-            <td><span class="flag" title="미국">🇺🇸</span></td>
-            <td>8,200<div class="score-bar"><span style="width: 92%"></span></div></td>
-            <td>2,180</td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge bronze" aria-label="3위">🥉 3</span></td>
-            <td><div class="player"><span class="avatar">DS</span><span class="name">DayShooter</span></div></td>
-            <td><span class="flag" title="일본">🇯🇵</span></td>
-            <td>7,850<div class="score-bar"><span style="width: 88%"></span></div></td>
-            <td>2,090</td>
-          </tr>
-          <tr>
-            <td><span class="rank">4</span></td>
-            <td><div class="player"><span class="avatar">TH</span><span class="name">TodayHunter</span></div></td>
-            <td><span class="flag" title="독일">🇩🇪</span></td>
-            <td>7,450<div class="score-bar"><span style="width: 83%"></span></div></td>
-            <td>1,980</td>
-          </tr>
-          <tr>
-            <td><span class="rank">5</span></td>
-            <td><div class="player"><span class="avatar">DP</span><span class="name">DailyPro</span></div></td>
-            <td><span class="flag" title="영국">🇬🇧</span></td>
-            <td>7,100<div class="score-bar"><span style="width: 79%"></span></div></td>
-            <td>1,890</td>
+          <tr *ngIf="entries.length === 0">
+            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>

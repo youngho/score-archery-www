@@ -175,6 +175,13 @@
 .score-bar { position: relative; height: 6px; background: var(--color-border); border-radius: 999px; margin-top: 6px; }
 .score-bar > span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--color-primary); border-radius: 999px; }
 
+/* 로딩/에러/빈 목록 */
+.loading-message, .error-message { padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+.loading-message { background: var(--color-surface); color: var(--color-muted); }
+.error-message { background: #fef2f2; color: #b91c1c; }
+:root[data-theme='dark'] .error-message { background: rgba(185, 28, 28, 0.2); color: #fca5a5; }
+.empty-message { text-align: center; padding: 2rem; color: var(--color-muted); }
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .hero-content h1 { font-size: 2.5rem; }

@@ -14,6 +14,8 @@ export interface LeaderboardEntry {
   score: number;
   avatar?: string;
   country?: string;
+  /** 누적/탭 공통; 레벨(누적), 게임수(월간), 평균점수(주간), 최고점수(일간) 등 */
+  extra?: number | string;
 }
 
 export interface NewsItem {
