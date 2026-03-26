@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LeaderboardTab } from '../../core/types';
 import { LeaderboardService, LeaderboardPeriod } from '../../core/leaderboard.service';
@@ -21,7 +21,7 @@ export class LeaderboardComponent implements OnInit {
   loading = false;
   error: string | null = null;
 
-  constructor(private leaderboardService: LeaderboardService) {}
+  private readonly leaderboardService = inject(LeaderboardService);
 
   ngOnInit(): void {
     this.loadEntries(this.activeTab);

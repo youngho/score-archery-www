@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -14,8 +14,7 @@ export interface LeaderboardResponse {
 @Injectable({ providedIn: 'root' })
 export class LeaderboardService {
   private readonly baseUrl = `${environment.apiUrl}/api/leaderboard`;
-
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   /**
    * 기간별 리더보드를 순위 구간으로 조회합니다.

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -12,8 +12,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class NavigationComponent implements OnInit {
   private readonly storageKey = 'lang';
-
-  constructor(private readonly translate: TranslateService) {}
+  private readonly translate = inject(TranslateService);
 
   ngOnInit(): void {
     const saved = (localStorage.getItem(this.storageKey) as 'ko' | 'en' | null) ?? null;

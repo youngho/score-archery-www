@@ -12,7 +12,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 
       // 개발 환경에서만 콘솔에 상세 에러 출력
       if (!this.isProduction()) {
-        console.error('Global Error Handler:', error);
+        console.error('Global Error Handler:', errorMessage, error);
         if (error instanceof Error && error.stack) {
           console.error('Stack trace:', error.stack);
         }
