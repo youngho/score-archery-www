@@ -87,10 +87,25 @@ export class LeaderboardComponent implements OnInit {
     return name.slice(0, 2).toUpperCase();
   }
 
-  formatScore(value: number | string | undefined): string {
+  formatScore(value: number | string | undefined | null): string {
     if (value === undefined || value === null) return '-';
     if (typeof value === 'number') return value.toLocaleString();
     return String(value);
+  }
+
+  /** API에서 반올림된 소수(평균 점수·평균 화살 등) */
+  formatDecimal(value: number | null | undefined, fractionDigits = 2): string {
+    if (value === undefined || value === null || Number.isNaN(value)) return '-';
+    return value.toLocaleString(undefined, {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: fractionDigits,
+    });
+  }
+
+  /** 평균 명중률(0–100) 표시 */
+  formatAccuracyPercent(value: number | null | undefined): string {
+    if (value === undefined || value === null || Number.isNaN(value)) return '-';
+    return `${this.formatDecimal(value)}%`;
   }
 
   @HostListener('keydown', ['$event'])

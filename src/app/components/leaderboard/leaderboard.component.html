@@ -102,6 +102,10 @@
             <th scope="col">국가</th>
             <th scope="col">누적점수</th>
             <th scope="col">레벨</th>
+            <th scope="col">최근 스테이지</th>
+            <th scope="col">평균 명중률</th>
+            <th scope="col">평균 화살</th>
+            <th scope="col">평균 회당 점수</th>
           </tr>
         </thead>
         <tbody>
@@ -126,9 +130,13 @@
               <div class="score-bar" aria-hidden="true" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
             </td>
             <td data-label="레벨">{{ formatScore(entry.extra) }}</td>
+            <td data-label="최근 스테이지" class="cell-stage" [title]="entry.lastStageSceneName ?? ''">{{ entry.lastStageSceneName ?? '-' }}</td>
+            <td data-label="평균 명중률">{{ formatAccuracyPercent(entry.avgAccuracy) }}</td>
+            <td data-label="평균 화살">{{ formatDecimal(entry.avgArrowsPerMatch) }}</td>
+            <td data-label="평균 회당 점수">{{ formatDecimal(entry.avgScorePerMatch) }}</td>
           </tr>
           <tr *ngIf="entries.length === 0">
-            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
+            <td colspan="9" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>
@@ -155,8 +163,12 @@
             <th scope="col">순위</th>
             <th scope="col">플레이어</th>
             <th scope="col">국가</th>
-            <th scope="col">월간점수</th>
+            <th scope="col">월간 합계</th>
             <th scope="col">게임수</th>
+            <th scope="col">평균/회 점수</th>
+            <th scope="col">최근 스테이지</th>
+            <th scope="col">평균 명중률</th>
+            <th scope="col">평균 화살</th>
           </tr>
         </thead>
         <tbody>
@@ -176,14 +188,18 @@
               </div>
             </td>
             <td data-label="국가"><span class="flag" [title]="entry.country ?? ''">{{ entry.country ?? '-' }}</span></td>
-            <td data-label="월간점수">
+            <td data-label="월간 합계">
               {{ formatScore(entry.score) }}
               <div class="score-bar" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
             </td>
-            <td data-label="게임수">{{ formatScore(entry.extra) }}</td>
+            <td data-label="게임수">{{ formatScore(entry.gameCount ?? entry.extra) }}</td>
+            <td data-label="평균/회 점수">{{ formatDecimal(entry.avgScorePerMatch) }}</td>
+            <td data-label="최근 스테이지" class="cell-stage" [title]="entry.lastStageSceneName ?? ''">{{ entry.lastStageSceneName ?? '-' }}</td>
+            <td data-label="평균 명중률">{{ formatAccuracyPercent(entry.avgAccuracy) }}</td>
+            <td data-label="평균 화살">{{ formatDecimal(entry.avgArrowsPerMatch) }}</td>
           </tr>
           <tr *ngIf="entries.length === 0">
-            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
+            <td colspan="9" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>
@@ -210,8 +226,12 @@
             <th scope="col">순위</th>
             <th scope="col">플레이어</th>
             <th scope="col">국가</th>
-            <th scope="col">주간점수</th>
-            <th scope="col">평균점수</th>
+            <th scope="col">주간 합계</th>
+            <th scope="col">게임수</th>
+            <th scope="col">평균/회 점수</th>
+            <th scope="col">최근 스테이지</th>
+            <th scope="col">평균 명중률</th>
+            <th scope="col">평균 화살</th>
           </tr>
         </thead>
         <tbody>
@@ -231,14 +251,18 @@
               </div>
             </td>
             <td data-label="국가"><span class="flag" [title]="entry.country ?? ''">{{ entry.country ?? '-' }}</span></td>
-            <td data-label="주간점수">
+            <td data-label="주간 합계">
               {{ formatScore(entry.score) }}
               <div class="score-bar" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
             </td>
-            <td data-label="평균점수">{{ formatScore(entry.extra) }}</td>
+            <td data-label="게임수">{{ formatScore(entry.gameCount) }}</td>
+            <td data-label="평균/회 점수">{{ formatDecimal(entry.avgScorePerMatch) }}</td>
+            <td data-label="최근 스테이지" class="cell-stage" [title]="entry.lastStageSceneName ?? ''">{{ entry.lastStageSceneName ?? '-' }}</td>
+            <td data-label="평균 명중률">{{ formatAccuracyPercent(entry.avgAccuracy) }}</td>
+            <td data-label="평균 화살">{{ formatDecimal(entry.avgArrowsPerMatch) }}</td>
           </tr>
           <tr *ngIf="entries.length === 0">
-            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
+            <td colspan="9" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>
@@ -265,8 +289,13 @@
             <th scope="col">순위</th>
             <th scope="col">플레이어</th>
             <th scope="col">국가</th>
-            <th scope="col">일간점수</th>
-            <th scope="col">최고점수</th>
+            <th scope="col">일간 합계</th>
+            <th scope="col">게임수</th>
+            <th scope="col">평균/회 점수</th>
+            <th scope="col">최고 단일</th>
+            <th scope="col">최근 스테이지</th>
+            <th scope="col">평균 명중률</th>
+            <th scope="col">평균 화살</th>
           </tr>
         </thead>
         <tbody>
@@ -286,14 +315,19 @@
               </div>
             </td>
             <td data-label="국가"><span class="flag" [title]="entry.country ?? ''">{{ entry.country ?? '-' }}</span></td>
-            <td data-label="일간점수">
+            <td data-label="일간 합계">
               {{ formatScore(entry.score) }}
               <div class="score-bar" *ngIf="entries.length"><span [style.width.%]="entry.rank === 1 ? 100 : (entry.score / (entries[0].score || 1) * 100)"></span></div>
             </td>
-            <td data-label="최고점수">{{ formatScore(entry.extra) }}</td>
+            <td data-label="게임수">{{ formatScore(entry.gameCount) }}</td>
+            <td data-label="평균/회 점수">{{ formatDecimal(entry.avgScorePerMatch) }}</td>
+            <td data-label="최고 단일">{{ formatScore(entry.extra) }}</td>
+            <td data-label="최근 스테이지" class="cell-stage" [title]="entry.lastStageSceneName ?? ''">{{ entry.lastStageSceneName ?? '-' }}</td>
+            <td data-label="평균 명중률">{{ formatAccuracyPercent(entry.avgAccuracy) }}</td>
+            <td data-label="평균 화살">{{ formatDecimal(entry.avgArrowsPerMatch) }}</td>
           </tr>
           <tr *ngIf="entries.length === 0">
-            <td colspan="5" class="empty-message">표시할 데이터가 없습니다.</td>
+            <td colspan="10" class="empty-message">표시할 데이터가 없습니다.</td>
           </tr>
         </tbody>
       </table>

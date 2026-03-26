@@ -14,8 +14,18 @@ export interface LeaderboardEntry {
   score: number;
   avatar?: string;
   country?: string;
-  /** 누적/탭 공통; 레벨(누적), 게임수(월간), 평균점수(주간), 최고점수(일간) 등 */
+  /** 레벨(누적), 게임수(월간·주간·일간 보조), 일간 최고 단일 점수 등 */
   extra?: number | string;
+  /** 기간 내 플레이 판수 (월/주/일) */
+  gameCount?: number | null;
+  /** 기간 내 회당 평균 점수 (합계/게임수); 누적 탭은 전체 매치 평균 final_score */
+  avgScorePerMatch?: number | null;
+  /** 기간(또는 전체) 매치 평균 명중률 0–100 */
+  avgAccuracy?: number | null;
+  /** 매치당 평균 발사 화살 수 */
+  avgArrowsPerMatch?: number | null;
+  /** 해당 범위에서 가장 최근 완료 매치의 Unity 스테이지(씬) 이름 */
+  lastStageSceneName?: string | null;
 }
 
 export interface NewsItem {
