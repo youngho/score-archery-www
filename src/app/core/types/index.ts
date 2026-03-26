@@ -34,7 +34,7 @@ export interface Feature {
   icon: string;
 }
 
-export type LeaderboardTab = 'alltime' | 'weekly' | 'monthly';
+export type LeaderboardTab = 'alltime' | 'weekly' | 'monthly' | 'daily';
 
 export interface AppConfig {
   appName: string;

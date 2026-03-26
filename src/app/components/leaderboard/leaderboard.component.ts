@@ -12,8 +12,12 @@ import { LeaderboardEntry } from '../../core/types';
   styleUrls: ['./leaderboard.component.css'],
 })
 export class LeaderboardComponent implements OnInit {
-  activeTab: LeaderboardTab | 'daily' = 'alltime';
+  activeTab: LeaderboardTab = 'alltime';
   entries: LeaderboardEntry[] = [];
+  /** API `LeaderboardResponse.total` — 해당 기간 순위 집계 인원 */
+  totalCount: number | null = null;
+  /** 아바타 URL 로드 실패 시 이니셜로 대체 (키: rank|playerName) */
+  failedAvatarKeys = new Set<string>();
   loading = false;
   error: string | null = null;
 
@@ -23,27 +27,45 @@ export class LeaderboardComponent implements OnInit {
     this.loadEntries(this.activeTab);
   }
 
-  setActiveTab(tab: LeaderboardTab | 'daily'): void {
+  setActiveTab(tab: LeaderboardTab): void {
     this.activeTab = tab;
     this.loadEntries(tab);
   }
 
-  private loadEntries(period: LeaderboardTab | 'daily'): void {
+  private loadEntries(period: LeaderboardTab): void {
     this.loading = true;
     this.error = null;
+    this.failedAvatarKeys = new Set();
     this.leaderboardService
       .getLeaderboard(period as LeaderboardPeriod, 1, 50)
       .subscribe({
         next: (res) => {
           this.entries = res.entries ?? [];
+          const t = res.total;
+          this.totalCount = typeof t === 'number' && !Number.isNaN(t) ? t : null;
           this.loading = false;
         },
         error: () => {
           this.entries = [];
+          this.totalCount = null;
           this.error = '리더보드를 불러올 수 없습니다.';
           this.loading = false;
         },
       });
+  }
+
+  avatarKey(entry: LeaderboardEntry): string {
+    return `${entry.rank}|${entry.playerName}`;
+  }
+
+  showAvatarImage(entry: LeaderboardEntry): boolean {
+    return !!entry.avatar && !this.failedAvatarKeys.has(this.avatarKey(entry));
+  }
+
+  onAvatarError(entry: LeaderboardEntry): void {
+    const key = this.avatarKey(entry);
+    if (this.failedAvatarKeys.has(key)) return;
+    this.failedAvatarKeys = new Set(this.failedAvatarKeys).add(key);
   }
 
   rankClass(rank: number): string {
@@ -75,7 +97,7 @@ export class LeaderboardComponent implements OnInit {
   onKeyDown(event: KeyboardEvent): void {
     // 화살표 키로 탭 전환
     if (event.target instanceof HTMLButtonElement) {
-      const tabs: (LeaderboardTab | 'daily')[] = ['alltime', 'monthly', 'weekly', 'daily'];
+      const tabs: LeaderboardTab[] = ['alltime', 'monthly', 'weekly', 'daily'];
       const currentIndex = tabs.indexOf(this.activeTab);
 
       if (event.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
@@ -90,7 +112,7 @@ export class LeaderboardComponent implements OnInit {
     }
   }
 
-  private focusTab(tab: LeaderboardTab | 'daily'): void {
+  private focusTab(tab: LeaderboardTab): void {
     const tabElement = document.getElementById(`${tab}-tab`);
     if (tabElement) {
       tabElement.focus();
